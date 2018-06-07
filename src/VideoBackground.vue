@@ -1,9 +1,9 @@
 <template>
   <section class="VideoBg">
-    <video autoplay loop :muted="true" ref="video">
+    <video autoplay loop :muted="playSound" ref="video">
       <source v-for="source in sources" :src="source" :type="getMediaType(source)">
     </video>
-    <div class="VideoBg__content">
+    <div class="VideoBg__content" @click="toggleVideo">
       <slot></slot>
     </div>
   </section>
@@ -24,7 +24,8 @@
 
     data () {
       return {
-        videoRatio: null
+        videoRatio: null,
+        playSound: false
       }
     },
 
@@ -83,6 +84,11 @@
 
         this.$refs.video.style.width = width ? `${width}px` : 'auto'
         this.$refs.video.style.height = height ? `${height}px` : 'auto'
+      },
+
+      toggleVideo () {
+        console.log('toggleVideo ===> TODO ~!')
+        this.playSound = !this.playSound
       },
 
       getMediaType (src) {
